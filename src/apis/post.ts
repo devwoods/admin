@@ -1,4 +1,4 @@
-import type { PostForm } from "../types/post";
+import type { PostForm, Category } from "../types/post";
 import request from "./request";
 
 export const createNewPost = async (postForm: PostForm) => {
@@ -9,4 +9,13 @@ export const createNewPost = async (postForm: PostForm) => {
   });
 
   return data;
+};
+
+export const getCategoryList = async () => {
+  const data = await request<Array<Category>>({
+    method: "get",
+    url: "/category/list",
+  });
+
+  return data?.data;
 };

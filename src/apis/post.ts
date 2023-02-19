@@ -1,5 +1,20 @@
-import type { PostForm, Category } from "../types/post";
+import type {
+  PostForm,
+  Category,
+  PostList,
+  GetPostListParams,
+} from "../types/post";
 import request from "./request";
+
+export const getPostList = async (params?: GetPostListParams) => {
+  const data = await request<PostList>({
+    method: "get",
+    url: "/posts",
+    params,
+  });
+
+  return data?.data;
+};
 
 export const createNewPost = async (postForm: PostForm) => {
   const data = await request({
